@@ -6,20 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%--
-<%@ page import="kopo.poly.util.CmmUtil" %>
-<%@ page import="kopo.poly.dto.UserInfoDTO" %>
-<%
-    //Controller로부터 전달받은 데이터
-    String msg = CmmUtil.nvl((String) request.getAttribute("msg"));
-
-    //Controller로부터 전달받은 웹(회원정보 입력화면)으로부터 입력받은 데이터(회원아이디, 이름, 이메일, 주소 등)
-    UserInfoDTO pDTO = (UserInfoDTO) request.getAttribute("pDTO");
-
-    if (pDTO == null) {
-        pDTO = new UserInfoDTO();
-
-    }--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +64,7 @@
                 return false;
             }
         }
+
             function kakaoPost(f) {
                 new daum.Postcode({
                     oncomplete: function (data) {
@@ -92,22 +79,24 @@
                     }
                 }).open();
             }
+        </script>
 
-
-    </script>
 </head>
 <body>
 <h1> 회원가입 화면</h1>
 <br/>
 <form name="f" method="post" action="/user/insertUserInfo" onsubmit="return doRegUserCheck(this);">
-    <label>* 아이디: <input type="text" name="user_id" style="width: 400px"/> </label><br/>
-    <label>* 이름: <input type="text" name="user_id" style="width: 400px"/></label><br/>
+    <label>* 아이디: <input type="text" name="user_id" style="width:400px"/></label><br/>
+    <label>* 이름: <input type="text" name="user_name" style="width:400px"/></label><br/>
     <hr/>
-    <label>*비밀번호 : <input type="password" name="password" style="width: 400px"/></label><br/>
-    <label>* 주소: <input type="text" name="addr1" style="width: 400px" readonly></label>
+    <label>* 비밀번호 : <input type="password" name="password" style="width:400px"/></label><br/>
+    <label>* 비밀번호확인 : <input type="password" name="password2" style="width:400px"/></label><br/>
+    <hr/>
+    <label>* 이메일 : <input type="email" name="email" style="width:400px"> </label><br/>
+    <label>* 주소: <input type="text" name="addr1" style="width:400px" readonly/></label>
     <input type="button" value="우편번호" onclick="kakaoPost(this.form)"/>
     <br/>
-    <label>*상세주소: <input type="text" name="addr2" style="width: 400px"/></label><br/>
+    <label>*상세주소: <input type="text" name="addr2" style="width:400px"/></label><br/>
     <input type="submit" value="회원가입"/>
 </form>
 </body>

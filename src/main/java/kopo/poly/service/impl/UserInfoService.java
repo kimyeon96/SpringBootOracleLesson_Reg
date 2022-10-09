@@ -50,9 +50,12 @@ public class UserInfoService implements IUserInfoService {
             // db에 데이터가 등록되었다면(회원가입 성공했다면....
             if (success > 0) {
                 res = 1;
+
             } else {
                 res = 0;
+
             }
+
         }
 
         return res;
